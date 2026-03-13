@@ -29,32 +29,6 @@
 
 
 package com.textileshop.backend.config;
-//
-//import org.springframework.context.annotation.Bean;
-//import org.springframework.context.annotation.Configuration;
-//import org.springframework.http.HttpMethod;
-//import org.springframework.security.config.annotation.web.builders.HttpSecurity;
-//import org.springframework.security.web.SecurityFilterChain;
-//
-//@Configuration
-//public class SecurityConfig {
-//
-//    @Bean
-//    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-//
-//        http
-//                .csrf(csrf -> csrf.disable())
-//                .authorizeHttpRequests(auth -> auth
-//                        .requestMatchers(HttpMethod.POST, "/api/images/upload").permitAll()
-//                        .requestMatchers("/api/test/mail", "/login").permitAll()
-//                        .anyRequest().authenticated()
-//                )
-//                .formLogin(form -> form.disable())
-//                .httpBasic(httpBasic -> httpBasic.disable());
-//
-//        return http.build();
-//    }
-//}
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -102,14 +76,17 @@ public class SecurityConfig {
                         .requestMatchers("/api/categories/**").permitAll()
                         .requestMatchers("/api/reviews/product/**").permitAll()
 
-                        // Admin endpoints
+                        // Admin-only endpoints
                         .requestMatchers("/api/admin/**").hasAuthority("ADMIN")
 
-                        // Customer endpoints
+                        // Cart & Wishlist — accessible by both CUSTOMER and ADMIN
+                        // (ADMIN may browse/test; @PreAuthorize handles finer logic)
+                        .requestMatchers("/api/cart/**").hasAnyAuthority("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/wishlist/**").hasAnyAuthority("CUSTOMER", "ADMIN")
+
+                        // Customer-only endpoints
                         .requestMatchers("/api/user/**").hasAuthority("CUSTOMER")
-                        .requestMatchers("/api/cart/**").hasAuthority("CUSTOMER")
                         .requestMatchers("/api/orders/**").hasAuthority("CUSTOMER")
-                        .requestMatchers("/api/wishlist/**").hasAuthority("CUSTOMER")
                         .requestMatchers("/api/reviews/create").hasAuthority("CUSTOMER")
 
                         .anyRequest().authenticated()

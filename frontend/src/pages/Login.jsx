@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { authAPI } from "../api";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate,useLocation } from "react-router-dom";
 
 export default function Login() {
   const [form, setForm] = useState({ email: "", password: "" });
@@ -9,6 +9,7 @@ export default function Login() {
   const [error, setError] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -16,15 +17,18 @@ export default function Login() {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setLoading(true);
-    setError("");
-    try {
-      const res = await authAPI.login(form);
-      localStorage.setItem("token", res.token);
-      localStorage.setItem("user", JSON.stringify(res));
-      navigate(res.role === "ADMIN" ? "/admin/dashboard" : "/");
-    } catch (err) {
+  e.preventDefault();
+  setLoading(true);
+  setError("");
+  try {
+    const res = await authAPI.login(form);
+    localStorage.setItem("token", res.token);
+    localStorage.setItem("user", JSON.stringify(res));
+    
+    // Redirect back to where they came from, or home/admin dashboard
+    const from = location.state?.from || (res.role === "ADMIN" ? "/admin/dashboard" : "/");
+    navigate(from);
+  } catch (err) {
       setError(err.response?.data?.message || err.message || "Login failed");
     } finally {
       setLoading(false);
