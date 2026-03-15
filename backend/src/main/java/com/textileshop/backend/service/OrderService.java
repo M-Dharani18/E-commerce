@@ -29,7 +29,7 @@ public class OrderService {
     private final UserRepository userRepository;
     private final CartService cartService;
     private final ProductRepository productRepository;
-
+    private final EmailService emailService;
     /**
      * Generate sequential order number in format: ASS-YYYY-NNNNN
      * Example: ASS-2026-00001, ASS-2026-00002, etc.
@@ -195,8 +195,11 @@ public class OrderService {
                 productRepository.save(product);
             }
         }
+        Order saved = orderRepository.save(order);
+        // Send cancellation email
+        try { emailService.sendOrderStatusEmail(saved); } catch (Exception ignored) {}
 
-        return OrderResponse.from(orderRepository.save(order));
+        return OrderResponse.from(saved);
     }
 
     // Admin methods
@@ -234,7 +237,11 @@ public class OrderService {
             case CANCELLED -> order.setCancelledAt(now);
         }
 
-        return OrderResponse.from(orderRepository.save(order));
+        Order saved = orderRepository.save(order);
+        // Send email notification for key status changes
+        try { emailService.sendOrderStatusEmail(saved); } catch (Exception ignored) {}
+
+        return OrderResponse.from(saved);
     }
 
     @Transactional
@@ -262,7 +269,12 @@ public class OrderService {
             }
         }
 
-        return OrderResponse.from(orderRepository.save(order));
+        Order saved = orderRepository.save(order);
+ 
+        // Send email on payment verification
+        try { emailService.sendOrderStatusEmail(saved); } catch (Exception ignored) {}
+
+        return OrderResponse.from(saved);
     }
 
     @Transactional
