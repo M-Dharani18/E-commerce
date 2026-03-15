@@ -309,7 +309,7 @@ export function generateInvoicePDF(order) {
 
   rgb(212, 175, 55); font("bold", 24); text("SRI ABOORVA SILKS", M + 4, 18);
   rgb(180, 160, 100); font("normal", 9); text("PREMIUM SILK & ETHNIC WEAR", M + 4, 25);
-  rgb(140, 140, 160); font("normal", 8); text("admin@aboorvasilks.com   |   aboorvasilks.vercel.app", M + 4, 32);
+  rgb(140, 140, 160); font("normal", 8); text("aboorvasilks.vercel.app", M + 4, 32);
   draw(212, 175, 55); lw(0.3); doc.line(M + 4, 36, W - M, 36);
 
   rgb(255, 255, 240); font("bold", 28); text("INVOICE", W - M, 20, { align: "right" });
@@ -319,7 +319,8 @@ export function generateInvoicePDF(order) {
     ? new Date(order.createdAt).toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" })
     : new Date().toLocaleDateString("en-IN", { day: "numeric", month: "long", year: "numeric" });
 
-  rgb(160, 160, 180); font("normal", 8); text(orderDate, W - M, 37, { align: "right" });
+  // Push the date slightly lower so it doesn't overlap the header divider line
+  rgb(160, 160, 180); font("normal", 8); text(orderDate, W - M, 40, { align: "right" });
 
   y = 58;
   const col1 = M, col2 = W / 2 + 5, colW = W / 2 - M - 5;
@@ -329,7 +330,8 @@ export function generateInvoicePDF(order) {
   draw(200, 190, 170); lw(0.3); doc.roundedRect(col1, y, colW, 52, 3, 3, "S");
   fill(22, 22, 40); doc.roundedRect(col1, y, colW, 9, 3, 3, "F"); doc.rect(col1, y + 4, colW, 5, "F");
   rgb(212, 175, 55); font("bold", 7.5); text("BILLED TO", col1 + 6, y + 6.5);
-  y += 13;
+  // Add a bit more breathing room between the label and the customer name
+  y += 16;
 
   const custName = order.deliveryName || order.customerName || order.userName || "Customer";
   rgb(22, 22, 40); font("bold", 12); text(custName, col1 + 6, y); y += 6;
@@ -432,7 +434,7 @@ export function generateInvoicePDF(order) {
     fill(235, 255, 242); draw(100, 200, 130); lw(0.4);
     doc.roundedRect(M, y, W - M * 2, 14, 3, 3, "FD");
     fill(34, 160, 80); doc.circle(M + 8, y + 7, 4, "F");
-    rgb(255, 255, 255); font("bold", 9); text("v", M + 5.5, y + 9.5);
+    rgb(255, 255, 255); font("bold", 9); text("v", M + 8, y + 9.5, { align: "center" });
     rgb(20, 100, 50); font("bold", 10); text("Payment Confirmed", M + 16, y + 6.5);
     rgb(80, 130, 100); font("normal", 8);
     text(`${order.paymentMethod || "Razorpay"} - ${order.paymentStatus || "COMPLETED"}`, M + 16, y + 11.5);
