@@ -470,7 +470,6 @@ export function generateInvoicePDF(order) {
 
   rgb(212, 175, 55); font("bold", 10); text("Sri Aboorva Silks", M + 4, footY + 8);
   rgb(160, 160, 180); font("normal", 7.5);
-  text("admin@aboorvasilks.com", M + 4, footY + 14);
   text("aboorvasilks.vercel.app", M + 4, footY + 19);
 
   rgb(200, 200, 220); font("bold", 8); text("Thank you for your purchase!", W / 2, footY + 10, { align: "center" });
