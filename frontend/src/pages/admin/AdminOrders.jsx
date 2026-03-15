@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAdminTheme, StatusBadge } from "./AdminDashboard";
 import { adminOrderAPI } from "../../api/order.api";
+import { generateInvoicePDF } from "../../utils/generateInvoice";
 
 const SERIF = "'Cormorant Garamond', Georgia, serif";
 const SANS  = "'DM Sans', 'Segoe UI', system-ui, sans-serif";
@@ -778,18 +779,19 @@ export default function AdminOrders() {
               </div>
             )}
 
-            {/* ── Generate Invoice ── */}
-            <button style={{ padding:"12px", background:T.maroon, color:"#FFFFF0",
-              border:"none", cursor:"pointer", fontSize:13, fontWeight:700,
-              borderRadius:8, fontFamily:SANS, display:"flex", alignItems:"center",
-              gap:8, justifyContent:"center", transition:"opacity 0.15s" }}
-              onMouseEnter={e => e.currentTarget.style.opacity="0.85"}
-              onMouseLeave={e => e.currentTarget.style.opacity="1"}>
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" strokeWidth="2">
-                <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
-              </svg>
-              Generate Invoice PDF
+            <button 
+                onClick={() => generateInvoicePDF(selectedOrder)}
+                style={{ padding:"12px", background:T.maroon, color:"#FFFFF0",
+                  border:"none", cursor:"pointer", fontSize:13, fontWeight:700,
+                  borderRadius:8, fontFamily:SANS, display:"flex", alignItems:"center",
+                  gap:8, justifyContent:"center", transition:"opacity 0.15s" }}
+                onMouseEnter={e => e.currentTarget.style.opacity="0.85"}
+                onMouseLeave={e => e.currentTarget.style.opacity="1"}>
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" strokeWidth="2">
+                  <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+                </svg>
+                Generate Invoice PDF
             </button>
           </motion.div>
         )}
