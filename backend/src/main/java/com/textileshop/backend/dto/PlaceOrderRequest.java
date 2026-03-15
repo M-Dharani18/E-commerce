@@ -16,6 +16,11 @@ public class PlaceOrderRequest {
     // For UPI payments
     private String utrNumber;
     private String screenshotUrl;
+    
+    // For Razorpay payments
+    private String razorpayOrderId;
+    private String razorpayPaymentId;
+    private String razorpaySignature;
 
     // Customer notes
     private String notes;

@@ -83,6 +83,7 @@ public class SecurityConfig {
                         // (ADMIN may browse/test; @PreAuthorize handles finer logic)
                         .requestMatchers("/api/cart/**").hasAnyAuthority("CUSTOMER", "ADMIN")
                         .requestMatchers("/api/wishlist/**").hasAnyAuthority("CUSTOMER", "ADMIN")
+                        .requestMatchers("/api/payments/**").hasAnyAuthority("CUSTOMER", "ADMIN")
 
                         // Customer-only endpoints
                         .requestMatchers("/api/user/**").hasAuthority("CUSTOMER")
