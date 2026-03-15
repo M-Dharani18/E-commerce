@@ -6,6 +6,7 @@ import AdminCategories from "./AdminCategories";
 import AdminProducts from "./AdminProducts";
 import AdminOrders from "./AdminOrders";
 import { adminAPI } from "../../api";
+import AdminInvoices from "./AdminInvoices";
 
 /* ─── THEME TOKENS ──────────────────────────────────────────────────────────*/
 const DARK = {
@@ -380,7 +381,7 @@ export default function AdminDashboard() {
               <Route path="/categories"   element={<AdminCategories />} />
               <Route path="/products"     element={<AdminProducts />} />
               <Route path="/orders"       element={<AdminOrders />} />
-              <Route path="/invoices"     element={<ComingSoon title="GST Invoices"      desc="Auto-generate and download tax invoices as PDF" />} />
+              <Route path="/invoices"     element={<AdminInvoices />} />
               <Route path="/transactions" element={<ComingSoon title="Transactions"      desc="Monitor UPI, COD and refund activity" />} />
               <Route path="/customers"    element={<ComingSoon title="Customers"         desc="View profiles, order history and account details" />} />
               <Route path="/reviews"      element={<ComingSoon title="Reviews & Ratings" desc="Moderate feedback and respond to customers" />} />

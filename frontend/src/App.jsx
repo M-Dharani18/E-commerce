@@ -16,7 +16,6 @@ import MyOrdersPage from "./pages/MyOrdersPage";
 import OrderConfirmation from "./pages/OrderConfirmation";
 import ProductsPage from "./pages/ProductsPage";
 import ProductDetail from "./pages/ProductDetail";
-import AdminInvoices from "./pages/admin/AdminInvoices";
 
 function App() {
   return (
