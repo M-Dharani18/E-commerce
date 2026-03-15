@@ -1,45 +1,4 @@
 
-// import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
-// import Login from "./pages/Login";
-// import Signup from "./pages/Signup";
-// import VerifyEmail from "./pages/VerifyEmail";
-// import Home from "./pages/Home";
-// import ProtectedRoute from "./components/ProtectedRoute";
-// import AdminDashboard from "./pages/admin/AdminDashboard";
-
-// function App() {
-//   return (
-//     <BrowserRouter>
-//       <Routes>
-//         {/* Public routes - no login needed */}
-//         <Route path="/" element={<Home />} />
-
-//         {/* Auth routes */}
-//         <Route path="/login" element={<Login />} />
-//         <Route path="/signup" element={<Signup />} />
-//         <Route path="/verify-email" element={<VerifyEmail />} />
-
-//         {/* Protected routes - login required */}
-//         <Route path="/cart" element={<ProtectedRoute><div>Cart Page Coming Soon</div></ProtectedRoute>} />
-//         <Route path="/wishlist" element={<ProtectedRoute><div>Wishlist Page Coming Soon</div></ProtectedRoute>} />
-//         <Route path="/profile" element={<ProtectedRoute><div>Profile Page Coming Soon</div></ProtectedRoute>} />
-//         <Route path="/orders" element={<ProtectedRoute><div>Orders Page Coming Soon</div></ProtectedRoute>} />
-//         <Route path="/checkout" element={<ProtectedRoute><div>Checkout Page Coming Soon</div></ProtectedRoute>} />
-
-//         {/* Admin routes */}
-//         <Route path="/admin" element={<Navigate to="/admin/dashboard" replace />} />
-//         <Route path="/admin/*" element={<ProtectedRoute adminOnly><AdminDashboard /></ProtectedRoute>} />
-
-//         {/* Catch all */}
-//         <Route path="*" element={<Navigate to="/" replace />} />
-//       </Routes>
-//     </BrowserRouter>
-//   );
-// }
-
-// export default App;
-
-
 
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { ToastProvider } from "./components/Toast";
