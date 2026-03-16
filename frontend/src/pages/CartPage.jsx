@@ -202,7 +202,7 @@ const SANS  = "'DM Sans', 'Segoe UI', sans-serif";
 // quick list of Indian states – we only use it for the cart page dropdown so it
 // mirrors the same set used in checkout.
 const STATES = [
-  "Andhra Pradesh","Arunachal Pradesh","Assam","Bihar","Chhattisgarh","Goa","Gujarat",
+  "Andhra Pradesh","Arunachal Pradesh","Assam","Bhar","Chhattisgarh","Goa","Gujarat",
   "Haryana","Himachal Pradesh","Jharkhand","Karnataka","Kerala","Madhya Pradesh",
   "Maharashtra","Manipur","Meghalaya","Mizoram","Nagaland","Odisha","Punjab",
   "Rajasthan","Sikkim","Tamil Nadu","Telangana","Tripura","Uttar Pradesh",
@@ -334,7 +334,6 @@ export default function CartPage() {
               Explore Collection
             </Link>
           </motion.div>
-
         ) : (
           <div style={{ display:"grid", gridTemplateColumns:"1fr 360px", gap:44, alignItems:"start" }}>
 
