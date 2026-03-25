@@ -67,6 +67,8 @@ public class SecurityConfig {
                         session.sessionCreationPolicy(SessionCreationPolicy.STATELESS)
                 )
                 .authorizeHttpRequests(auth -> auth
+
+                        .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                         // Public endpoints
                         .requestMatchers("/", "/error").permitAll()
                         .requestMatchers("/api/auth/**").permitAll()
@@ -91,6 +93,7 @@ public class SecurityConfig {
                         .requestMatchers("/api/reviews/create").hasAuthority("CUSTOMER")
 
                         .anyRequest().authenticated()
+                        
                 )
                 .addFilterBefore(jwtAuthFilter, UsernamePasswordAuthenticationFilter.class);
 

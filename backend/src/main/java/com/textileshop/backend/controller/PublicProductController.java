@@ -35,6 +35,10 @@ public class PublicProductController {
     public ResponseEntity<List<Product>> getProductsByCategory(@PathVariable Long categoryId) {
         return ResponseEntity.ok(productService.getProductsByCategory(categoryId));
     }
+    @GetMapping("/gender/{gender}")
+    public ResponseEntity<List<Product>> getProductsByGender(@PathVariable String gender) {
+        return ResponseEntity.ok(productService.getProductsByGender(gender));
+    }
 
     @GetMapping("/{id}")
     public ResponseEntity<Product> getProductById(@PathVariable Long id) {

@@ -13,4 +13,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     List<Product> findByIsFeaturedTrueAndIsActiveTrue();
     List<Product> findByCategoryIdAndIsActiveTrue(Long categoryId);
     Page<Product> findByNameContainingIgnoreCase(String name, Pageable pageable);
+
+    // Filter by gender
+    List<Product> findByGenderAndIsActiveTrue(String gender);
+    Page<Product> findByGenderAndIsActiveTrue(String gender, Pageable pageable);
 }
