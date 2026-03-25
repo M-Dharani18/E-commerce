@@ -116,7 +116,7 @@ public class SecurityConfig {
         "https://aboorvasilks.vercel.app",
         "https://e-commerce-delta-silk-18.vercel.app"
 ));
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "PATCH","OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
         configuration.setAllowCredentials(true);
 
