@@ -3,13 +3,13 @@ import axiosInstance from "./axiosInstance";
 export const authAPI = {
   // POST /auth/signup
   signup: async (data) => {
-    const res = await axiosInstance.post("/auth/signup", data);
+    const res = await axiosInstance.post("auth/signup", data);
     return res.data;
   },
 
   // POST /auth/login
   login: async (data) => {
-    const res = await axiosInstance.post("/auth/login", data);
+    const res = await axiosInstance.post("auth/login", data);
     return res.data;
   },
 
