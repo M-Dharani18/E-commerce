@@ -47,4 +47,10 @@ public class Product {
     
     @LastModifiedDate
     private LocalDateTime updatedAt;
+
+    private String colours;
+    private String sizes;
+    private String gender;
+    private String fabric;
+    private String occasion;
 }

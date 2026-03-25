@@ -35,4 +35,10 @@ public class ProductRequest {
     private Boolean isFeatured = false;
 
     private Boolean isActive = true;
+
+    private String colours;
+    private String sizes;
+    private String gender;
+    private String fabric;
+    private String occasion;
 }
