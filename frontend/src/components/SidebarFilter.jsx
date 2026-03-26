@@ -348,7 +348,7 @@ const Radio = ({ label, value, selected, onChange }) => (
 
 export default function SidebarFilter({ filters, onChange, categories = [], showGenderFilter = true }) {
   const {
-    minPrice = 0, maxPrice = 10000,
+    minPrice = 0, maxPrice = 50000,
     selectedCategories = [],
     selectedColors = [],
     selectedSizes = [],
@@ -365,10 +365,10 @@ export default function SidebarFilter({ filters, onChange, categories = [], show
   };
 
   const hasActiveFilters = selectedCategories.length > 0 || selectedColors.length > 0 || selectedSizes.length > 0 ||
-    selectedGenders.length > 0 || inStockOnly || discountMin > 0 || minRating > 0 || minPrice > 0 || maxPrice < 10000;
+    selectedGenders.length > 0 || inStockOnly || discountMin > 0 || minRating > 0 || minPrice > 0 || maxPrice < 50000;
 
   const clearAll = () => onChange({
-    minPrice: 0, maxPrice: 10000, selectedCategories: [], selectedColors: [],
+    minPrice: 0, maxPrice: 50000, selectedCategories: [], selectedColors: [],
     selectedSizes: [], selectedGenders: [], inStockOnly: false, discountMin: 0, minRating: 0, sortBy: "newest"
   });
 
@@ -428,23 +428,23 @@ export default function SidebarFilter({ filters, onChange, categories = [], show
           <div style={{ position: "relative", height: 6, background: "#e5e7eb", borderRadius: 3, margin: "6px 0 12px" }}>
             <div style={{
               position: "absolute", top: 0, bottom: 0,
-              left: `${(minPrice / 10000) * 100}%`,
-              right: `${100 - (maxPrice / 10000) * 100}%`,
+              left: `${(minPrice / 50000) * 100}%`,
+              right: `${100 - (maxPrice / 50000) * 100}%`,
               background: RED, borderRadius: 3
             }} />
           </div>
           <div style={{ position: "relative", height: 20, marginBottom: 14 }}>
-            <input type="range" min={0} max={10000} step={100} value={minPrice}
+            <input type="range" min={0} max={50000} step={100} value={minPrice}
               onChange={e => onChange({ ...filters, minPrice: Math.min(+e.target.value, maxPrice - 100) })}
               style={{ position: "absolute", width: "100%", height: "100%", opacity: 0, cursor: "pointer", zIndex: 2 }} />
-            <input type="range" min={0} max={10000} step={100} value={maxPrice}
+            <input type="range" min={0} max={50000} step={100} value={maxPrice}
               onChange={e => onChange({ ...filters, maxPrice: Math.max(+e.target.value, minPrice + 100) })}
               style={{ position: "absolute", width: "100%", height: "100%", opacity: 0, cursor: "pointer", zIndex: 2 }} />
           </div>
 
           {/* Quick preset buttons */}
           <div style={{ display: "grid", gridTemplateColumns: "repeat(4,1fr)", gap: 6 }}>
-            {[{ label: "< ₹500", min: 0, max: 500 }, { label: "₹500–1K", min: 500, max: 1000 }, { label: "₹1K–3K", min: 1000, max: 3000 }, { label: "₹3K+", min: 3000, max: 10000 }].map(p => (
+            {[{ label: "< ₹500", min: 0, max: 500 }, { label: "₹500–1K", min: 500, max: 1000 }, { label: "₹1K–3K", min: 1000, max: 3000 }, { label: "₹3K+", min: 3000, max: 50000 }].map(p => (
               <button key={p.label} onClick={() => onChange({ ...filters, minPrice: p.min, maxPrice: p.max })}
                 style={{ padding: "6px 4px", fontSize: 11, fontWeight: 500, background: minPrice === p.min && maxPrice === p.max ? RED : "white", color: minPrice === p.min && maxPrice === p.max ? "white" : "#374151", border: "1.5px solid #d1d5db", borderRadius: 6, cursor: "pointer", fontFamily: F, transition: "all 0.15s" }}>
                 {p.label}
