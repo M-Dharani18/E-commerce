@@ -562,7 +562,8 @@ const DEFAULT_FILTERS = {
 function applyFilters(products, filters, pageGender) {
   return products.filter(p => {
     // ✅ FIX: Use the gender FIELD directly instead of category name
-    if (pageGender && p.gender !== pageGender) return false;
+    //if (pageGender && p.gender !== pageGender) return false;
+    if (pageGender && p.gender?.toLowerCase() !== pageGender.toLowerCase()) return false;
     
     if (filters.inStockOnly && (p.stockQuantity || 0) === 0) return false;
     if (p.price < filters.minPrice || p.price > filters.maxPrice) return false;
