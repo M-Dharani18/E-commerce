@@ -298,7 +298,7 @@ export default function VerifyEmail() {
           className="text-xs tracking-[0.4em] uppercase mb-3"
           style={{ color: "#D4AF37" }}
         >
-          Aboorva Silk House
+          Aboorva Silk Hoe
         </motion.p>
 
         {/* Title */}
